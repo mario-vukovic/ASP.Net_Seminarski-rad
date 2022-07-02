@@ -24,8 +24,8 @@ builder.Services.AddSingleton<IIdentityService, IdentityService>();
 builder.Services.AddAuthentication()
     .AddGoogle(googleOptions =>
     {
-        googleOptions.ClientId = configuration["Authentication:Google:125497814688-csj8l75btvh3hqr8qgmbg5vpd7cuf588.apps.googleusercontent.com"];
-        googleOptions.ClientSecret = configuration["Authentication:Google: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"];
+        googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+        googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
     });
 
 //    .AddFacebook(options =>
