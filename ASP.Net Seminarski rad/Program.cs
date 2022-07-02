@@ -5,8 +5,11 @@ using ASP.Net_Seminarski_rad.Services.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
+
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+
+
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -26,26 +29,12 @@ builder.Services.AddAuthentication()
     {
         googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
         googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+    })
+    .AddMicrosoftAccount(microsoftOptions =>
+    {
+        microsoftOptions.ClientId = configuration["Authentication:Microsoft:ClientId"];
+        microsoftOptions.ClientSecret = configuration["Authentication:Microsoft:ClientSecret"];
     });
-
-//    .AddFacebook(options =>
-//    {
-//        IConfigurationSection FBAuthNSection =
-//            config.GetSection("Authentication:FB");
-//        options.ClientId = FBAuthNSection["ClientId"];
-//        options.ClientSecret = FBAuthNSection["ClientSecret"];
-//    })
-//    .AddMicrosoftAccount(microsoftOptions =>
-//    {
-//        microsoftOptions.ClientId = config["Authentication:Microsoft:ClientId"];
-//        microsoftOptions.ClientSecret = config["Authentication:Microsoft:ClientSecret"];
-//    })
-//    .AddTwitter(twitterOptions =>
-//    {
-//        twitterOptions.ConsumerKey = config["Authentication:Twitter:ConsumerAPIKey"];
-//        twitterOptions.ConsumerSecret = config["Authentication:Twitter:ConsumerSecret"];
-//        twitterOptions.RetrieveUserDetails = true;
-//    });
 
 var app = builder.Build();
 

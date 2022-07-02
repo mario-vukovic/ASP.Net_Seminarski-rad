@@ -64,6 +64,28 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
 
 
             //}, "Employee123!#", Employee).Wait();
+
+
+            CreateUserAsync(new ApplicationUser
+            {
+                Id = "3",
+                Name = "Admin Test Two",
+                DateOfBirth = DateTime.Now.AddYears(-27),
+                Email = "admin.test.two@gmail.com",
+                EmailConfirmed = true,
+                UserName = "admin.test.two@gmail.com",
+                PhoneNumber = "0919098800",
+                PhoneNumberConfirmed = true,
+                Active = true,
+                Created = DateTime.Now,
+                Address = new List<Address>
+                {
+                    new() {City = "Karlovac", CityPO = "31000", Street = "Vukovarska cesta", HouseNumber = "146", AddressType = Apartment},
+                    new() {City = "Kutina", CityPO = "32276", Street = "Kralja Tomislava", HouseNumber = "12", AddressType = House}
+                },
+
+
+            }, "P1a2s3s4w5o6r7D8!!!", Admin).Wait();
         }
 
         public async Task CreateRoleAsync(string role)
