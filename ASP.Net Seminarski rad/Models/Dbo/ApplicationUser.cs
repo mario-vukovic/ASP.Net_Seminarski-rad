@@ -1,4 +1,5 @@
-﻿using ASP.Net_Seminarski_rad.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using ASP.Net_Seminarski_rad.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace ASP.Net_Seminarski_rad.Models.Dbo
@@ -9,6 +10,7 @@ namespace ASP.Net_Seminarski_rad.Models.Dbo
         public DateTime DateOfBirth { get; set; }
         public bool Active { get; set; }
         public DateTime Created { get; set; }
+        public ICollection<Address> Address { get; set; }
 
 
     }
