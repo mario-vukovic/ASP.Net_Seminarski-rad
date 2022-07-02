@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using ASP.Net_Seminarski_rad.Models.Dbo;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ASP.Net_Seminarski_rad.Data
@@ -9,5 +10,7 @@ namespace ASP.Net_Seminarski_rad.Data
             : base(options)
         {
         }
+
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }
