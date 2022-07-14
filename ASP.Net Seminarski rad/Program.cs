@@ -3,7 +3,9 @@ using ASP.Net_Seminarski_rad.Models.Dbo;
 using ASP.Net_Seminarski_rad.Services.Implementation;
 using ASP.Net_Seminarski_rad.Services.Interface;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +25,11 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IIdentityService, IdentityService>();
+
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+builder.Services.Configure<DataProtectionTokenProviderOptions>(o =>
+    o.TokenLifespan = TimeSpan.FromHours(3));
 
 builder.Services.AddAuthentication()
     .AddGoogle(googleOptions =>
