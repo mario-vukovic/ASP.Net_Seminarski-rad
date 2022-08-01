@@ -1,11 +1,8 @@
 ﻿using ASP.Net_Seminarski_rad.Data;
-using ASP.Net_Seminarski_rad.Models;
 using ASP.Net_Seminarski_rad.Models.Dbo;
 using ASP.Net_Seminarski_rad.Services.Interface;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using static ASP.Net_Seminarski_rad.Models.RolesEnum;
-using static ASP.Net_Seminarski_rad.Models.AddressTypeEnum;
+using static ASP.Net_Seminarski_rad.Models.Roles;
 
 namespace ASP.Net_Seminarski_rad.Services.Implementation
 {
@@ -21,17 +18,19 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
             userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
             CreateRoleAsync(Admin).Wait();
+            CreateRoleAsync(Editor).Wait();
+            CreateRoleAsync(Employee).Wait();
+            CreateRoleAsync(BasicUser).Wait();
 
             //CreateUserAsync(new ApplicationUser
             //{
-            //    Id = "1",
-            //    Name = "Administrator",
-            //    DateOfBirth = DateTime.Now.AddYears(-27),
-            //    Email = "admin@admin.com",
+            //    FirstName = "Administrator",
+            //    Dob = DateTime.Now.AddYears(-27),
+            //    Email = "superadmin@admin.com",
             //    EmailConfirmed = true,
-            //    UserName = "admin@admin.com",
-            //    Active = true,
-            //    Created = DateTime.Now, }
+            //    UserName = "superadmin@admin.com",
+            //    Created = DateTime.Now,
+            //}
             //    , "Admin123!", Admin).Wait();
 
 
@@ -45,29 +44,6 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
                 await roleManager.CreateAsync(new IdentityRole { Name = role });
             }
         }
-
-        //public async Task GetAllUsersAsync()
-        //{
-        //    var dbo = await db.ApplicationUser.ToListAsync();
-        //}
-
-        //public async Task GetUserByEmailAync(string email)
-        //{
-        //    var dbo = await db.ApplicationUser.FirstOrDefaultAsync(x => x.Email == email);
-        //}
-
-        //public async Task UpdateUserAsync(string email, ApplicationUser appUser)
-        //{
-        //    var dbo = await db.ApplicationUser.FirstOrDefaultAsync(x => x.Email == email);
-        //    dbo.FirstName = appUser.FirstName;
-        //    dbo.LastName = appUser.LastName;
-        //    dbo.Address = appUser.Address;
-        //    dbo.Dob = appUser.Dob;
-        //    dbo.Email = appUser.Email;
-        //    dbo.EmailConfirmed = appUser.EmailConfirmed;
-        //    dbo.UserName = appUser.UserName;
-
-        //}
 
         public async Task CreateUserAsync(ApplicationUser applicationUser, string password, string role)
         {

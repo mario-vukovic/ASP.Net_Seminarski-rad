@@ -1,27 +1,51 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using ASP.Net_Seminarski_rad.Models.Dbo
+@using ASP.Net_Seminarski_rad.Services.Implementation
+@using ASP.Net_Seminarski_rad.Services.Interface
+@using Microsoft.CodeAnalysis.VisualBasic.Syntax
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject IUserService UserService
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
 
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
+    @if (user != null)
+    {
+        var userRole = await UserManager.GetRolesAsync(user);
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @user.FirstName</a>
+        </li>
+
+
+        @switch (userRole[0])
+        {
+            case Roles.Admin:
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="@Url.Action("AdminPanel", "Admin")">Admin panel</a>
+                </li>
+                break;
+            case Roles.BasicUser:
+            case Roles.Editor:
+            case Roles.Employee:
+                break;
+        }
+
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="@Url.Action("Register", "User")">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
 </ul>
