@@ -13,5 +13,7 @@ namespace ASP.Net_Seminarski_rad.Data
 
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Address> Address { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<ProductCategory> ProductCategory { get; set; }
     }
 }

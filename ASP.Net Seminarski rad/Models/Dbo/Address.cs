@@ -1,15 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ASP.Net_Seminarski_rad.Models.Base;
+using ASP.Net_Seminarski_rad.Models.Dbo.Base;
 
 namespace ASP.Net_Seminarski_rad.Models.Dbo
 {
-    public class Address
+    public class Address : AddressBase, IEntityBase
     {
         [Key]
-        //public string Country { get; set; }
-        public string City { get; set; }
-        public string CityPO { get; set; }
-        public string Street { get; set; }
-        public string HouseNumber { get; set; }
-        public AddressTypeEnum AddressType { get; set; }
+        public int Id { get; set; }
+        public DateTime Created { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
+
     }
 }

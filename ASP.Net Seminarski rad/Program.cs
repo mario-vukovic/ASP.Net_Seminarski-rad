@@ -43,6 +43,12 @@ builder.Services.AddAuthentication()
         microsoftOptions.ClientSecret = configuration["Authentication:Microsoft:ClientSecret"];
     });
 
+
+builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddOpenApiDocument();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -58,20 +64,16 @@ else
 }
 app.Services.GetService<IIdentityService>();
 
+app.UseSwaggerUi3();
+app.UseOpenApi();
+
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthentication();
-
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
 app.MapRazorPages();
-
 app.Run();
