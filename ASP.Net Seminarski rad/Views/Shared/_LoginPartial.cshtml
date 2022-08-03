@@ -21,14 +21,14 @@
 
         @switch (userRole[0])
         {
-            case Roles.Admin:
+            case "Admin":
+            case "Editor":
                 <li class="nav-item">
                     <a class="nav-link text-dark" href="@Url.Action("AdminPanel", "Admin")">Admin panel</a>
                 </li>
                 break;
-            case Roles.BasicUser:
-            case Roles.Editor:
-            case Roles.Employee:
+            case "BasicUser":
+            case "Employee":
                 break;
         }
 

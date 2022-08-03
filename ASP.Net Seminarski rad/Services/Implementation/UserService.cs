@@ -36,8 +36,6 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
             }
 
             var user = mapper.Map<ApplicationUser>(model);
-            var address = mapper.Map<Address>(model.UserAddress);
-            user.Address = new List<Address>() { address };
 
             var createUser = await userManager.CreateAsync(user, model.Password);
             if (createUser.Succeeded)
@@ -75,7 +73,7 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
 
         public async Task<List<ApplicationUserViewModel>> GetAllUsersAsync()
         {
-            var users = await db.ApplicationUser.Include(x => x.Address).ToListAsync();
+            var users = await db.ApplicationUser.ToListAsync();
             return users.Select(x => mapper.Map<ApplicationUserViewModel>(x)).ToList();
         }
 

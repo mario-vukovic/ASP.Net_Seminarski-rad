@@ -11,6 +11,5 @@ namespace ASP.Net_Seminarski_rad.Models.Dbo
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public DateTime Dob { get; set; }
-        public ICollection<Address> Address { get; set; }
     }
 }

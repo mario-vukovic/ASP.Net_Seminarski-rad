@@ -33,7 +33,7 @@ namespace ASP.Net_Seminarski_rad.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(ApplicationUserBinding model)
         {
-            var register = await userService.CreateUserAsync(model, Roles.BasicUser);
+            var register = await userService.CreateUserAsync(model, "BasicUser");
             if (true)
             {
                 await signInManager.SignInAsync(register, false);
@@ -41,7 +41,6 @@ namespace ASP.Net_Seminarski_rad.Controllers
             }
 
         }
-        //=================================================================================================
         public async Task<IActionResult> UserManagament()
         {
             var users = await userService.GetAllUsersAsync();

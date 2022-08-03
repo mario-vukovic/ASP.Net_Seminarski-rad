@@ -5,6 +5,6 @@
         public const string Admin = "Administrator";
         public const string Editor = "Editor";
         public const string Employee = "Employee";
-        public const string BasicUser = "Basic user";
+        public const string BasicUser = "BasicUser";
     }
 }

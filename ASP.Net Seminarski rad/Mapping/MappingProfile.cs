@@ -9,9 +9,6 @@ namespace ASP.Net_Seminarski_rad.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<AddressBinding, Address>();
-            CreateMap<Address, AddressViewModel>();
-
             CreateMap<ProductBinding, Product>();
             CreateMap<ProductUpdateBinding, Product>();
             CreateMap<Product, ProductViewModel>();

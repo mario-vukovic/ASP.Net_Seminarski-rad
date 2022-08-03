@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ASP.Net_Seminarski_rad.Controllers
 {
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly IProductService productService;
