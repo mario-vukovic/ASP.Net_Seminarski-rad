@@ -1,13 +1,11 @@
-﻿using ASP.Net_Seminarski_rad.Models;
+﻿using System.Net;
+using System.Security.Claims;
 using ASP.Net_Seminarski_rad.Models.Binding;
 using ASP.Net_Seminarski_rad.Models.Dbo;
-using ASP.Net_Seminarski_rad.Services.Implementation;
 using ASP.Net_Seminarski_rad.Services.Interface;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using SendGrid.Helpers.Mail.Model;
 
 namespace ASP.Net_Seminarski_rad.Controllers
 {
@@ -39,8 +37,8 @@ namespace ASP.Net_Seminarski_rad.Controllers
                 await signInManager.SignInAsync(register, false);
                 return RedirectToAction("Index", "Home");
             }
-
         }
+        
         public async Task<IActionResult> UserManagament()
         {
             var users = await userService.GetAllUsersAsync();

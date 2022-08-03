@@ -2,7 +2,9 @@
 @using ASP.Net_Seminarski_rad.Services.Interface
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Mvc.TagHelpers
-
+@using Microsoft.EntityFrameworkCore.Infrastructure
+@using Namotion.Reflection
+@inject RoleManager<IdentityRole> roleManager
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @inject IUserService UserService
