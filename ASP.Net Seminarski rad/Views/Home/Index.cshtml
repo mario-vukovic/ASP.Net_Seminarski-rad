@@ -1,8 +1,50 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using ASP.Net_Seminarski_rad.Models.ViewModel
+@model List<ProductViewModel>
+@{
+    int counter = 1;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Detalji</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    @foreach (var product in Model.OrderBy(x=> Guid.NewGuid()))
+    {
+        decimal price = product.Price * 1.25M;
+
+        <tr>
+            <th scope="row">@counter</th>
+            <td>@product.Name</td>
+            <td>@product.Description</td>
+            <td>@product.Price</td>
+            <td>
+                @if(product.Quantity > 0)
+                {
+                    <a href="@Url.Action("Details", "Home",new {id = product.Id})" class="btn btn-success">Details</a>
+                }
+                else
+                {
+                    <span>Proizvod nije dostupan</span>
+                }
+
+            </td>
+            <td>
+                <img src="@product.ProductImgUrl">
+            </td>
+
+        </tr>
+        counter++;
+    }
+
+
+
+    </tbody>
+</table>

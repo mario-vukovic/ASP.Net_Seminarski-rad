@@ -1,5 +1,4 @@
 ﻿using ASP.Net_Seminarski_rad.Data;
-using ASP.Net_Seminarski_rad.Models.Base;
 using ASP.Net_Seminarski_rad.Models.Binding;
 using ASP.Net_Seminarski_rad.Models.Dbo;
 using ASP.Net_Seminarski_rad.Models.ViewModel;
@@ -43,20 +42,67 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
             var createUser = await userManager.CreateAsync(user, model.Password);
             if (createUser.Succeeded)
             {
+
                 var assignRole = await userManager.AddToRoleAsync(user, role);
                 if (!assignRole.Succeeded)
                 {
                     throw new Exception("Role assignment failed!");
                 }
+
             }
             return user;
 
         }
 
+        public async Task<ApplicationUser> CreateNewUserAsync(ApplicationUserBinding model, string role)
+        {
+            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+            var password = model.Password;
+            var createUser = await userManager.CreateAsync(user, password);
+            if (createUser.Succeeded)
+            {
+                var assignRole = await userManager.AddToRoleAsync(user, role);
+                if (!assignRole.Succeeded)
+                {
+                    throw new Exception("Role assignment failed!");
+                }
+
+            }
+            db.ApplicationUser.Add(user);
+            await db.SaveChangesAsync();
+            return (user);
+        }
+
         public async Task<List<ApplicationUserViewModel>> GetAllUsersAsync()
         {
-            var users = await db.ApplicationUser.Include(x=>x.Address).ToListAsync();
+            var users = await db.ApplicationUser.Include(x => x.Address).ToListAsync();
             return users.Select(x => mapper.Map<ApplicationUserViewModel>(x)).ToList();
         }
+
+        public async Task<ApplicationUserViewModel> GetUserAsync(string id)
+        {
+            var user = await db.ApplicationUser.FirstOrDefaultAsync(x => x.Id == id);
+            return mapper.Map<ApplicationUserViewModel>(user);
+        }
+
+        public async Task<ApplicationUserViewModel> DeleteUserAsync(string id)
+        {
+            var user = await db.ApplicationUser.FirstOrDefaultAsync(x => x.Id == id);
+            if (user != null)
+            {
+                db.ApplicationUser.Remove(user);
+            }
+            await db.SaveChangesAsync();
+            return mapper.Map<ApplicationUserViewModel>(user);
+        }
+
+        public async Task<ApplicationUserViewModel> UpdateUserAsync(ApplicationUserBinding model)
+        {
+            var user = await db.ApplicationUser.FindAsync(model);
+            mapper.Map(model, user);
+            await db.SaveChangesAsync();
+            return mapper.Map<ApplicationUserViewModel>(user);
+        }
+
     }
 }

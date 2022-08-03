@@ -30,17 +30,10 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddressType")
-                        .HasColumnType("int");
-
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CityPO")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -50,14 +43,6 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("HouseNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Street")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -77,9 +62,6 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("Dob")
                         .HasColumnType("datetime2");
@@ -143,6 +125,34 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("ASP.Net_Seminarski_rad.Models.Dbo.FileStorage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DownloadUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileExtension")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhysicalPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FileStorage");
+                });
+
             modelBuilder.Entity("ASP.Net_Seminarski_rad.Models.Dbo.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -158,9 +168,7 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -171,8 +179,8 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
                     b.Property<string>("ProductImgUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -195,6 +203,9 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -354,7 +365,7 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
             modelBuilder.Entity("ASP.Net_Seminarski_rad.Models.Dbo.Product", b =>
                 {
                     b.HasOne("ASP.Net_Seminarski_rad.Models.Dbo.ProductCategory", "ProductCategory")
-                        .WithMany()
+                        .WithMany("Product")
                         .HasForeignKey("ProductCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -416,6 +427,11 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
             modelBuilder.Entity("ASP.Net_Seminarski_rad.Models.Dbo.ApplicationUser", b =>
                 {
                     b.Navigation("Address");
+                });
+
+            modelBuilder.Entity("ASP.Net_Seminarski_rad.Models.Dbo.ProductCategory", b =>
+                {
+                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }

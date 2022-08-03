@@ -1,6 +1,9 @@
 ﻿using ASP.Net_Seminarski_rad.Data;
+using ASP.Net_Seminarski_rad.Models.Binding;
 using ASP.Net_Seminarski_rad.Models.Dbo;
+using ASP.Net_Seminarski_rad.Models.ViewModel;
 using ASP.Net_Seminarski_rad.Services.Interface;
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using static ASP.Net_Seminarski_rad.Models.Roles;
 
@@ -11,6 +14,8 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ApplicationDbContext db;
+        private readonly IProductService productService;
+        private readonly IMapper mapper;
         public IdentityService(IServiceScopeFactory scopeFactory)
         {
             using var scope = scopeFactory.CreateScope();
@@ -25,17 +30,13 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
             //CreateUserAsync(new ApplicationUser
             //{
             //    FirstName = "Administrator",
-            //    Dob = DateTime.Now.AddYears(-27),
-            //    Email = "superadmin@admin.com",
+            //    Email = "admin@admin.com",
             //    EmailConfirmed = true,
-            //    UserName = "superadmin@admin.com",
-            //    Created = DateTime.Now,
+            //    UserName = "admin@admin.com",
             //}
             //    , "Admin123!", Admin).Wait();
 
-
         }
-
 
         public async Task CreateRoleAsync(string role)
         {
@@ -63,15 +64,5 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
                 }
             }
         }
-
-        public async Task DeleteUserAsync(ApplicationUser applicationUser)
-        {
-            var findUserById = await roleManager.FindByIdAsync(applicationUser.Id);
-            if (findUserById != null)
-            {
-                await userManager.DeleteAsync(applicationUser);
-            }
-        }
-
     }
 }

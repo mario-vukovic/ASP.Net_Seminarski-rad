@@ -1,6 +1,6 @@
 ﻿namespace ASP.Net_Seminarski_rad.Models.Base
 {
-    public class ApplicationUserBase
+    public abstract class ApplicationUserBase
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }

@@ -1,8 +1,8 @@
-﻿@using Microsoft.AspNetCore.Identity
-@using ASP.Net_Seminarski_rad.Models.Dbo
-@using ASP.Net_Seminarski_rad.Services.Implementation
+﻿@using ASP.Net_Seminarski_rad.Models.Dbo
 @using ASP.Net_Seminarski_rad.Services.Interface
-@using Microsoft.CodeAnalysis.VisualBasic.Syntax
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @inject IUserService UserService
@@ -18,7 +18,6 @@
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @user.FirstName</a>
         </li>
-
 
         @switch (userRole[0])
         {

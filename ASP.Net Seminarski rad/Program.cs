@@ -27,25 +27,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IIdentityService, IdentityService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProductService, ProductService>();
-
-
-builder.Services.AddTransient<IEmailSender, EmailSender>();
-builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
-builder.Services.Configure<DataProtectionTokenProviderOptions>(o =>
-    o.TokenLifespan = TimeSpan.FromHours(3));
-
-builder.Services.AddAuthentication()
-    .AddGoogle(googleOptions =>
-    {
-        googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-        googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-    })
-    .AddMicrosoftAccount(microsoftOptions =>
-    {
-        microsoftOptions.ClientId = configuration["Authentication:Microsoft:ClientId"];
-        microsoftOptions.ClientSecret = configuration["Authentication:Microsoft:ClientSecret"];
-    });
-
+builder.Services.AddScoped<IFileStorageService, FileStorageService>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 

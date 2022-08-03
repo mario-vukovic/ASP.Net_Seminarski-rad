@@ -1,0 +1,40 @@
+﻿@using ASP.Net_Seminarski_rad.Models.ViewModel
+@model List<ApplicationUserViewModel>
+@{
+    int counter = 1;
+}
+<a class="btn btn-primary" href="@Url.Action("CreateUser", "User")">Back to admin panel</a>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Id</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Dob</th>
+        <th scope="col">Address</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    @foreach (var user in Model)
+    {
+        <tr>
+            <th scope="row">@counter</th>
+            <td>@user.Id</td>
+            <td>@user.FirstName</td>
+            <td>@user.LastName</td>
+            <td>@user.Dob</td>
+            <td> @Html.ActionLink("Edit","UpdateUser","User",new {id= user.Id},new {@class = "btn btn-primary"})</td>
+            <td> @Html.ActionLink("Delete","DeleteUser","User",new {id= user.Id},new {@class = "btn btn-danger"})</td>
+        </tr>
+        counter++;
+    }
+
+
+
+    </tbody>
+</table>
+
+<a class="btn btn-primary" href="@Url.Action("AdminPanel", "Admin")">Back to admin panel</a>

@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using ASP.Net_Seminarski_rad.Models.Dbo
+@using ASP.Net_Seminarski_rad.Services.Implementation
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@inject UserManager<ApplicationUser> UserManager
+@inject IProductService productService
+@model ASP.Net_Seminarski_rad.Models.ViewModel.CreateProductViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ActionLink("Create", "CreateProduct", new {  id = Model.ProductToCategoryId })
+
+
+@using (Html.BeginForm())
+{
+
+    <table class="table">
+    <thead>
+    <tr>
+       <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+        
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Products)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem=> item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem=> item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem=> item.ProductCategory.Title)
+            </td>
+        </tr>
+    }
+    </tbody>
+    </table>
+}

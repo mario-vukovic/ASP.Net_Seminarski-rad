@@ -7,12 +7,4 @@
         public const string Employee = "Employee";
         public const string BasicUser = "Basic user";
     }
-
-    public enum AddressTypeEnum
-    {
-        House = 1,
-        Apartment,
-        Office
-    }
-
 }

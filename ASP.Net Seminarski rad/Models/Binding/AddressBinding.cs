@@ -2,9 +2,8 @@
 
 namespace ASP.Net_Seminarski_rad.Models.Binding
 {
-    public class AddressBinding:AddressBase
+    public class AddressBinding : AddressBase
     {
         public string UserId { get; set; }
-
     }
 }
