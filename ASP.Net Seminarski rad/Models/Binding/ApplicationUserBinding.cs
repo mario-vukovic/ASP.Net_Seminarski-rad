@@ -1,8 +1,9 @@
 ﻿using ASP.Net_Seminarski_rad.Models.Base;
+using ASP.Net_Seminarski_rad.Models.Dbo;
 
 namespace ASP.Net_Seminarski_rad.Models.Binding
 {
-    public class ApplicationUserBinding
+    public class ApplicationUserBinding:ApplicationUser
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }

@@ -67,8 +67,6 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
                 throw new Exception("Role assignment failed!");
             }
 
-            db.ApplicationUser.Add(user);
-            await db.SaveChangesAsync();
             return user;
         }
 
@@ -105,10 +103,10 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
             user.Dob = model.Dob ?? user.Dob;
             user.NormalizedEmail = model.Email.ToUpper();
             user.NormalizedUserName = model.Email.ToUpper();
+            user.EmailConfirmed = model.EmailConfirmed;
             
             await db.SaveChangesAsync();
             return mapper.Map<ApplicationUserViewModel>(user);
         }
-
     }
 }

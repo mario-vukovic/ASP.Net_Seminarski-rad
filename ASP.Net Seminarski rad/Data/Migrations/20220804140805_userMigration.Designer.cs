@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASP.Net_Seminarski_rad.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220804103035_userMigration2")]
-    partial class userMigration2
+    [Migration("20220804140805_userMigration")]
+    partial class userMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -102,7 +102,7 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
                         {
                             Id = "22dd4ddd-df0e-4621-af37-c2b36aaa6733",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fcaa08e0-f0f0-4de9-bfa7-3fb9d361be42",
+                            ConcurrencyStamp = "70b33fe2-d7b3-4f4d-a2d1-92e03cda6ef2",
                             Dob = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
@@ -110,9 +110,9 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJoPS9fC/1u7c/F+287t2xIJXqbXTi1o7Wy/Az748bNyClQxvtZ7x3eMATwjKvK/jQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFa6ABXsl97gf6maYdkL9EyjDsb+AyThOK4UxIN0bg9IJMuZ2Cg922TfBIJDm2/Q6Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "69a6cd26-0624-4563-8a6e-39e3d1bbebdc",
+                            SecurityStamp = "e2d6df93-050c-4ba3-9f11-e69ce1d2fce8",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         });
@@ -448,28 +448,28 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
                         new
                         {
                             Id = "77b5b0da-e61e-46ba-b766-e1acc7401355",
-                            ConcurrencyStamp = "02d4a3ec-a551-4271-b3d5-89d734b9e1c3",
+                            ConcurrencyStamp = "135b105d-c4e5-49cd-959d-82c7851efd8b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "28d19372-3d43-43e6-89b6-b7e0c68ed61c",
-                            ConcurrencyStamp = "7db2ebff-ebef-46fd-9059-6c2262b0abc0",
+                            Id = "ef1b1e3f-f000-43d0-ab62-de8a7d8c0209",
+                            ConcurrencyStamp = "2f3e021b-4add-47e4-89d9-f868983f9129",
                             Name = "BasicUser",
                             NormalizedName = "BASICUSER"
                         },
                         new
                         {
-                            Id = "e9653493-f3b8-474a-bcfd-65bcfa176517",
-                            ConcurrencyStamp = "f7ada08d-6c77-41e8-8143-80b71a32831b",
+                            Id = "fe2a53f6-0f47-453a-8b43-3fc80c219ca2",
+                            ConcurrencyStamp = "4cda2494-ac6c-4413-8236-d2dd66ca5956",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "a80c34d2-e139-4807-ae7d-e8c1c54b54b4",
-                            ConcurrencyStamp = "2880483b-470b-47e1-a1c0-25d931d26324",
+                            Id = "b2c0efa1-d505-4e69-bf00-3dc3e8c2a541",
+                            ConcurrencyStamp = "5dd8c24d-0fc2-4474-8f26-e6c5085b5446",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         });

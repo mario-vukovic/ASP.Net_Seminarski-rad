@@ -1,5 +1,4 @@
-﻿using System.Net;
-using System.Security.Claims;
+﻿using ASP.Net_Seminarski_rad.Data;
 using ASP.Net_Seminarski_rad.Models.Binding;
 using ASP.Net_Seminarski_rad.Models.Dbo;
 using ASP.Net_Seminarski_rad.Services.Interface;
@@ -14,6 +13,7 @@ namespace ASP.Net_Seminarski_rad.Controllers
         private readonly IUserService userService;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly IMapper mapper;
+        private readonly ApplicationDbContext db;
 
 
         public UserController(IUserService userSevice, SignInManager<ApplicationUser> signInManager, IMapper mapper)
@@ -54,7 +54,7 @@ namespace ASP.Net_Seminarski_rad.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUser(ApplicationUserBinding model, string role)
         {
-            await userService.AddNewUserAsync(model, role);
+            await userService.AddNewUserAsync(model, "BasicUser");
             return RedirectToAction("UserManagement");
         }
 
@@ -95,11 +95,6 @@ namespace ASP.Net_Seminarski_rad.Controllers
 
             return RedirectToAction("UserManagement");
         }
-
-
-
-
     }
 
 }
-

@@ -1,7 +1,8 @@
 ﻿@using ASP.Net_Seminarski_rad.Services.Interface
 @model ASP.Net_Seminarski_rad.Models.Binding.ApplicationUserUpdateBinding
 @inject IUserService UserService
-
+@{
+}
 
 <h1>Update user</h1>
 <div class="row">
@@ -12,11 +13,6 @@
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(x=>x.Password)
-                @Html.TextBoxFor(x=> x.Password, new {@class = "form-control" })
-
             </div>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
@@ -30,10 +26,14 @@
             </div>
             <div class="form-group">
                 @Html.LabelFor(x=>x.Dob)
-                @Html.TextBoxFor(x=> x.Dob, new {@class = "form-control" })
-
+                @Html.TextBoxFor(x=>  x.Dob , new {@class = "form-control" })
             </div>
-          
+            <div class="form-group">
+                
+                @Html.LabelFor(x=>x.EmailConfirmed)
+                @Html.CheckBoxFor(x=>  x.EmailConfirmed)
+            </div>
+
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -43,5 +43,5 @@
 </div>
 
 <div>
-    <a asp-controller="User", asp-action="UserManagement">Back to user list</a>
+    <a asp-controller="User" , asp-action="UserManagement">Back to user list</a>
 </div>

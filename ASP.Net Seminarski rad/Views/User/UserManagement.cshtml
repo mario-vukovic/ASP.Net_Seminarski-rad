@@ -1,5 +1,8 @@
 ﻿@using ASP.Net_Seminarski_rad.Models.ViewModel
+@using Microsoft.AspNetCore.Identity
+@using ASP.Net_Seminarski_rad.Models.Dbo
 @model List<ApplicationUserViewModel>
+@inject UserManager<ApplicationUser> UserManager
 @{
     int counter = 1;
 }
@@ -7,32 +10,37 @@
 
 <table class="table table-striped">
     <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Id</th>
-        <th scope="col">FirstName</th>
-        <th scope="col">LastName</th>
-        <th scope="col">Dob</th>
-    </tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Email</th>
+            <th scope="col">EmailConfirmed</th>
+        </tr>
     </thead>
     <tbody>
 
-    @foreach (var user in Model)
-    {
-        <tr>
-            <th scope="row">@counter</th>
-            <td>@user.Id</td>
-            <td>@user.FirstName</td>
-            <td>@user.LastName</td>
-            <td>@user.Dob</td>
-            <td> @Html.ActionLink("Details","UserDetails","User",new {id= user.Id},new {@class = "btn btn-primary"})</td>
-            <td> @Html.ActionLink("Edit","UpdateUser","User",new {id= user.Id},new {@class = "btn btn-primary"})</td>
-            <td> @Html.ActionLink("Delete","DeleteUser","User",new {id= user.Id},new {@class = "btn btn-danger"})</td>
-        </tr>
-        counter++;
-    }
-
-
+        @foreach (var user in Model)
+        {
+            <tr>
+                <th scope="row">@counter</th>
+                <td>@user.Id</td>
+                <td>@user.Email</td>
+                <td>@if (user.EmailConfirmed)
+                    {
+                        <input type="checkbox" onclick="return false" checked>
+                    }
+                    else
+                    {
+                        <input type="checkbox" onclick="return false">
+                    }</td>
+                <td>
+                </td>
+                <td> @Html.ActionLink("Details","UserDetails","User",new {id= user.Id},new {@class = "btn btn-primary"})</td>
+                <td> @Html.ActionLink("Edit","UpdateUser","User",new {id= user.Id},new {@class = "btn btn-primary"})</td>
+                <td> @Html.ActionLink("Delete","DeleteUser","User",new {id= user.Id},new {@class = "btn btn-danger"})</td>
+            </tr>
+            counter++;
+        }
 
     </tbody>
 </table>
