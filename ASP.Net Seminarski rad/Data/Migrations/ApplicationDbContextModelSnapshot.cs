@@ -101,9 +101,9 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "22dd4ddd-df0e-4621-af37-c2b36aaa6733",
+                            Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "41c238c2-9116-4bb6-a194-074ff866c98a",
+                            ConcurrencyStamp = "2329dfcf-fac4-46c8-a92d-cad42ebc10e3",
                             Dob = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
@@ -111,11 +111,29 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKoEEC7hS3AewsleQ0w8PMwtJG8KyBJAr2qgbgCkaN27ANAwk5uBPlMvlTTm/01fhA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAcTzSRm+rzdmEj8cHCYH3f4BXSLxIH4WvAk4i3VsoaJTFj4BR+DxfKcm2tgbeT/Fg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a1fd5714-66f1-4c24-a66b-2f7321082b52",
+                            SecurityStamp = "96cb4354-a04b-4494-876e-1a6fed31dcc6",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e18395ca-0083-425d-a228-b6807d271a23",
+                            Dob = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "user@user.com",
+                            EmailConfirmed = true,
+                            FirstName = "BasicUser",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER@USER.COM",
+                            NormalizedUserName = "USER@USER.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJiFn5sTF/PROr0Yw1+MkwKi7q6n40vmwlLD+0NQAusEBZboVF6cEpWoTT3boH9xDA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "394f623e-9712-4f6b-9820-949b839806fe",
+                            TwoFactorEnabled = false,
+                            UserName = "user@user.com"
                         });
                 });
 
@@ -448,29 +466,29 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "77b5b0da-e61e-46ba-b766-e1acc7401355",
-                            ConcurrencyStamp = "d0ce3a8d-bcf7-487c-b0fe-2f188964e310",
+                            Id = "1",
+                            ConcurrencyStamp = "ae3cd568-6242-4891-8d78-78065a39acf8",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "0d0bfd28-d4e5-4fcf-af1f-a278580264bc",
-                            ConcurrencyStamp = "18856335-9018-4b97-8e49-017a013d06c5",
+                            Id = "2",
+                            ConcurrencyStamp = "eaeca1cf-599d-4aa1-afd1-d8fb542e3754",
                             Name = "BasicUser",
                             NormalizedName = "BASICUSER"
                         },
                         new
                         {
-                            Id = "3ceba21b-fc6a-42fc-bfd0-c154a4981e7d",
-                            ConcurrencyStamp = "7451ce95-7931-4e0d-b93a-96a7b56840d7",
+                            Id = "3",
+                            ConcurrencyStamp = "d6d4d551-1575-4864-a8e4-4cd6e4b01ba3",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "3b0fb086-2768-4935-b2e8-4525f6d9319b",
-                            ConcurrencyStamp = "bb0460a8-b7af-440e-9363-39e9ddb407b7",
+                            Id = "4",
+                            ConcurrencyStamp = "3a40e8db-d1ff-4a56-8ea1-50b215510066",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         });
@@ -567,8 +585,13 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "22dd4ddd-df0e-4621-af37-c2b36aaa6733",
-                            RoleId = "77b5b0da-e61e-46ba-b766-e1acc7401355"
+                            UserId = "1",
+                            RoleId = "1"
+                        },
+                        new
+                        {
+                            UserId = "2",
+                            RoleId = "2"
                         });
                 });
 

@@ -107,7 +107,7 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
             user.EmailConfirmed = model.EmailConfirmed;
             user.Password = model.Password ?? user.Password;
             user.PasswordHash = hasher.HashPassword(user, model.Password);
-            
+
             await db.SaveChangesAsync();
             return mapper.Map<ApplicationUserViewModel>(user);
         }

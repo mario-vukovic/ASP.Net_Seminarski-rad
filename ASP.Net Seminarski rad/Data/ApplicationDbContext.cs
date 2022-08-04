@@ -18,38 +18,62 @@ namespace ASP.Net_Seminarski_rad.Data
         {
             base.OnModelCreating(builder);
 
-            var userName = "admin@admin.com";
-            var adminRoleId = "77b5b0da-e61e-46ba-b766-e1acc7401355";
-            var userId = "22dd4ddd-df0e-4621-af37-c2b36aaa6733";
+            #region Roles
 
             builder.Entity<IdentityRole>().HasData
             (
-                new IdentityRole { Name = "Admin", NormalizedName = "ADMIN", Id = adminRoleId },
-                new IdentityRole { Name = "BasicUser", NormalizedName = "BASICUSER", Id = Guid.NewGuid().ToString() },
-                new IdentityRole { Name = "Employee", NormalizedName = "EMPLOYEE", Id = Guid.NewGuid().ToString() },
-                new IdentityRole { Name = "Editor", NormalizedName = "EDITOR", Id = Guid.NewGuid().ToString() }
+                new IdentityRole { Name = "Admin", NormalizedName = "ADMIN", Id = "1" },
+                new IdentityRole { Name = "BasicUser", NormalizedName = "BASICUSER", Id = "2" },
+                new IdentityRole { Name = "Employee", NormalizedName = "EMPLOYEE", Id = "3" },
+                new IdentityRole { Name = "Editor", NormalizedName = "EDITOR", Id = "4" }
             );
+
+            #endregion
+
+            #region Users
 
             var hasher = new PasswordHasher<ApplicationUser?>();
 
-            builder.Entity<ApplicationUser>().HasData(new ApplicationUser
-            {
-                Id = userId,
-                FirstName = "Admin",
-                UserName = userName,
-                NormalizedUserName = userName.ToUpper(),
-                Email = userName,
-                NormalizedEmail = userName.ToUpper(),
-                EmailConfirmed = true,
-                PasswordHash = hasher.HashPassword(null, "Pass123"),
-            });
+            builder.Entity<ApplicationUser>().HasData
+            (
+                new ApplicationUser
+                {
+                    Id = "1",
+                    FirstName = "Admin",
+                    UserName = "admin@admin.com",
+                    NormalizedUserName = "admin@admin.com".ToUpper(),
+                    Email = "admin@admin.com",
+                    NormalizedEmail = "admin@admin.com".ToUpper(),
+                    EmailConfirmed = true,
+                    PasswordHash = hasher.HashPassword(null, "Admin123"),
+                },
+
+                new ApplicationUser
+                {
+                    Id = "2",
+                    FirstName = "BasicUser",
+                    UserName = "user@user.com",
+                    NormalizedUserName = "user@user.com".ToUpper(),
+                    Email = "user@user.com",
+                    NormalizedEmail = "user@user.com".ToUpper(),
+                    EmailConfirmed = true,
+                    PasswordHash = hasher.HashPassword(null, "User123")
+                });
 
             builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
-            {
-                RoleId = adminRoleId,
-                UserId = userId
-            });
+                {
+                    RoleId = "1",
+                    UserId = "1"
+                },
 
+                new IdentityUserRole<string>
+                {
+                    RoleId = "2",
+                    UserId = "2"
+                });
+
+            #endregion
+            
             #region Categories
 
             builder.Entity<ProductCategory>().HasData(
@@ -119,7 +143,7 @@ namespace ASP.Net_Seminarski_rad.Data
                     ProductCategoryId = 1,
                     Quantity = 1,
                     Price = 560,
-                    ProductImgUrl = "https://www.scarpebarefoot.com/wp-content/uploads/2020/04/Eastern_Traveler_stivale_furoshiki_Vibram_barefoot_BLACK-SUEDE_HERO-300x200.jpg"
+                    ProductImgUrl = "https://lh4.googleusercontent.com/uKiSMORQwKFcFD6mmxTLQKOJYzDnfa1SI-t4kUkZU0ctklvkYovubYe8YlXhmBLCYwHaM0VBvTuD2j68ODBCanhIY_nJteVdkPl6CtfVV2QQUvTf3wa4nukJsuB0NHrQWezwFjRI"
                 },
 
                 new Product
