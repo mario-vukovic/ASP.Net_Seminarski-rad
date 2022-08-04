@@ -38,37 +38,38 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
             var user = mapper.Map<ApplicationUser>(model);
 
             var createUser = await userManager.CreateAsync(user, model.Password);
-            if (createUser.Succeeded)
+            if (!createUser.Succeeded) return user;
+
+            var assignRole = await userManager.AddToRoleAsync(user, role);
+            if (!assignRole.Succeeded)
             {
-
-                var assignRole = await userManager.AddToRoleAsync(user, role);
-                if (!assignRole.Succeeded)
-                {
-                    throw new Exception("Role assignment failed!");
-                }
-
+                throw new Exception("Role assignment failed!");
             }
+
             return user;
 
         }
 
-        public async Task<ApplicationUser> CreateNewUserAsync(ApplicationUserBinding model, string role)
+        public async Task<ApplicationUser> AddNewUserAsync(ApplicationUserBinding model, string role)
         {
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-            var password = model.Password;
-            var createUser = await userManager.CreateAsync(user, password);
-            if (createUser.Succeeded)
+            var findUserByEmail = await userManager.FindByEmailAsync(model.Email);
+            if (findUserByEmail != null)
             {
-                var assignRole = await userManager.AddToRoleAsync(user, role);
-                if (!assignRole.Succeeded)
-                {
-                    throw new Exception("Role assignment failed!");
-                }
-
+                throw new Exception("User with that email already exists");
             }
+            var user = mapper.Map<ApplicationUser>(model);
+            var createUser = await userManager.CreateAsync(user, model.Password);
+            if (!createUser.Succeeded) return user;
+
+            var assignRole = await userManager.AddToRoleAsync(user, role);
+            if (!assignRole.Succeeded)
+            {
+                throw new Exception("Role assignment failed!");
+            }
+
             db.ApplicationUser.Add(user);
             await db.SaveChangesAsync();
-            return (user);
+            return user;
         }
 
         public async Task<List<ApplicationUserViewModel>> GetAllUsersAsync()
@@ -83,21 +84,28 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
             return mapper.Map<ApplicationUserViewModel>(user);
         }
 
-        public async Task<ApplicationUserViewModel> DeleteUserAsync(string id)
+        public async Task DeleteUserAsync(ApplicationUser model)
         {
-            var user = await db.ApplicationUser.FirstOrDefaultAsync(x => x.Id == id);
+            var user = await db.ApplicationUser.FirstOrDefaultAsync(x => x.Id == model.Id);
             if (user != null)
             {
                 db.ApplicationUser.Remove(user);
             }
             await db.SaveChangesAsync();
-            return mapper.Map<ApplicationUserViewModel>(user);
         }
 
-        public async Task<ApplicationUserViewModel> UpdateUserAsync(ApplicationUserBinding model)
+        public async Task<ApplicationUserViewModel> UpdateUserAsync(ApplicationUserUpdateBinding model)
         {
-            var user = await db.ApplicationUser.FindAsync(model);
-            mapper.Map(model, user);
+            var user = await db.ApplicationUser.FirstOrDefaultAsync(x => x.Id == model.Id);
+
+            user.FirstName = model.FirstName ?? user.FirstName;
+            user.LastName = model.LastName ?? user.LastName;
+            user.Email = model.Email ?? user.Email;
+            user.UserName = model.Email ?? user.UserName;
+            user.Dob = model.Dob ?? user.Dob;
+            user.NormalizedEmail = model.Email.ToUpper();
+            user.NormalizedUserName = model.Email.ToUpper();
+            
             await db.SaveChangesAsync();
             return mapper.Map<ApplicationUserViewModel>(user);
         }

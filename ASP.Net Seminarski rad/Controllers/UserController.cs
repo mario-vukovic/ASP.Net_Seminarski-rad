@@ -39,7 +39,7 @@ namespace ASP.Net_Seminarski_rad.Controllers
             }
         }
         
-        public async Task<IActionResult> UserManagament()
+        public async Task<IActionResult> UserManagement()
         {
             var users = await userService.GetAllUsersAsync();
             return View(users);
@@ -54,41 +54,46 @@ namespace ASP.Net_Seminarski_rad.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUser(ApplicationUserBinding model, string role)
         {
-            await userService.CreateNewUserAsync(model, role);
-            return RedirectToAction("UserManagament");
+            await userService.AddNewUserAsync(model, role);
+            return RedirectToAction("UserManagement");
         }
 
-        [HttpGet]
+        public async Task<IActionResult> UserDetails(string id)
+        {
+            var user = await userService.GetUserAsync(id);
+            return View(user);
+        }
+
         public async Task<IActionResult> UpdateUser(string id)
         {
             var user = await userService.GetUserAsync(id);
-            var model = mapper.Map<ApplicationUserBinding>(user);
+            var model = mapper.Map<ApplicationUserUpdateBinding>(user);
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateUser(ApplicationUserBinding model)
+        public async Task<IActionResult> UpdateUser(ApplicationUserUpdateBinding model)
         {
             var user = await userService.UpdateUserAsync(model);
-            return RedirectToAction("UserManagament");
+            return RedirectToAction("UserManagement");
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> DeleteUser(string id)
-        //{
-        //    var user = userService.GetUserAsync(id);
-        //    return View(user);
-        //}
-
-        [HttpPost]
         public async Task<IActionResult> DeleteUser(string id)
         {
             var user = await userService.GetUserAsync(id);
-            if (user != null)
-            {
-                await userService.DeleteUserAsync(id);
-            }
-            return RedirectToAction("UserManagament");
+            var model = mapper.Map<ApplicationUser>(user);
+            return View(model);
+        }
+
+        [HttpPost, ActionName("DeleteUser")]
+        public async Task<IActionResult> DeleteUserConfirmed(string id)
+        {
+            var user = await userService.GetUserAsync(id);
+            var model = mapper.Map<ApplicationUser>(user);
+
+            await userService.DeleteUserAsync(model);
+
+            return RedirectToAction("UserManagement");
         }
 
 

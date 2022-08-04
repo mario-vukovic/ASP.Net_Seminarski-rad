@@ -28,7 +28,7 @@ namespace ASP.Net_Seminarski_rad.Controllers
             return View("AdminPanel");
         }
 
-        public async Task<IActionResult> ProductManagament()
+        public async Task<IActionResult> ProductManagement()
         {
             var products = await productService.GetProductsAsync();
             return View(products);
@@ -43,7 +43,7 @@ namespace ASP.Net_Seminarski_rad.Controllers
         public async Task<IActionResult> CreateProduct(ProductBinding model)
         {
             var product = await productService.CreateProductAsync(model);
-            return RedirectToAction("ProductManagament", new { id = product.ProductCategory.Id });
+            return RedirectToAction("ProductManagement", new { id = product.ProductCategory.Id });
         }
 
         public async Task<IActionResult> ProductDetails(int id)
@@ -63,7 +63,7 @@ namespace ASP.Net_Seminarski_rad.Controllers
         public async Task<IActionResult> UpdateProduct(ProductUpdateBinding model)
         {
             var product = await productService.UpdateProductAsync(model);
-            return RedirectToAction("ProductManagament");
+            return RedirectToAction("ProductManagement");
         }
         public async Task<IActionResult> DeleteProduct(int id)
         {
@@ -80,7 +80,7 @@ namespace ASP.Net_Seminarski_rad.Controllers
 
             await productService.DeleteProductAsync(model);
 
-            return RedirectToAction("ProductManagament");
+            return RedirectToAction("ProductManagement");
         }
 
         public async Task<IActionResult> ProductCategoryManagament()

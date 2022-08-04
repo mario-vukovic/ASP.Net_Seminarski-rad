@@ -4,7 +4,7 @@
 @using ASP.Net_Seminarski_rad.Services.Implementation
 @inject UserManager<ApplicationUser> UserManager
 @inject IProductService productService
-@model ASP.Net_Seminarski_rad.Models.ViewModel.ProductViewModel
+@model ASP.Net_Seminarski_rad.Models.ViewModel.ApplicationUserViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     var user = await UserManager.GetUserAsync(User);
@@ -13,47 +13,43 @@
 @using (Html.BeginForm())
 {
     <h1>Proizvod</h1>
-    <input type="text" readonly hidden value="@Model.Id" name="ProductId">
+    <input type="text" readonly hidden value="@Model.Id" name="UserId">
     <div>
         <h4>Detalji</h4>
         <hr />
         <dl class="row">
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Id)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Name)
+                @Html.DisplayFor(model => model.Id)
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Email)
             </dd>
             <dt class="col-sm-2">
-                Category
+                @Html.DisplayNameFor(model => model.FirstName)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model =>  model.ProductCategory.Title)
+                @Html.DisplayFor(model => model.FirstName)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.LastName)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Description)
+                @Html.DisplayFor(model => model.LastName)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Quantity)
+                @Html.DisplayNameFor(model => model.Dob)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Quantity)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.TextBoxFor(model => model.Price,new {@readonly = true, @class = "form-control readonly"})
-            </dd>
-            <dd>
-                <img src="@Model.ProductImgUrl">
+                @Html.DisplayFor(model => model.Dob)
             </dd>
         </dl>
 
-        <a class="btn btn-primary" href="@Url.Action("ProductManagement", "Admin")">Back to product managament</a>
+        <a class="btn btn-primary" href="@Url.Action("UserManagement", "User")">Back to product managament</a>
     </div>
 
 }

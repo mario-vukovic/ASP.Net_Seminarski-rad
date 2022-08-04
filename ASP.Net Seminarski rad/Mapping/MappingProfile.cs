@@ -22,9 +22,15 @@ namespace ASP.Net_Seminarski_rad.Mapping
             CreateMap<ProductCategoryViewModel, ProductCategory>();
             CreateMap<ProductCategoryViewModel, ProductCategoryUpdateBinding>();
             
+            CreateMap<ApplicationUserViewModel, ApplicationUserUpdateBinding>();
+            CreateMap<ApplicationUserUpdateBinding, ApplicationUserViewModel>();
+            CreateMap<ApplicationUserUpdateBinding, ApplicationUser>();
+            
             CreateMap<ApplicationUserBinding, ApplicationUser>()
                 .ForMember(dst => dst.UserName, opts => opts.MapFrom(src => src.Email));
             CreateMap<ApplicationUser, ApplicationUserViewModel>();
+            CreateMap<ApplicationUserViewModel, ApplicationUser>();
+            CreateMap<ApplicationUserViewModel, ApplicationUserBinding>();
             
             CreateMap<FileStorage, FileStorageViewModel>();
             CreateMap<FileStorage, FileStorageExpendedViewModel>();

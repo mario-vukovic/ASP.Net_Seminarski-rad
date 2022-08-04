@@ -4,6 +4,7 @@ using ASP.Net_Seminarski_rad.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASP.Net_Seminarski_rad.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220804102856_userMigration")]
+    partial class userMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,7 +102,7 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
                         {
                             Id = "22dd4ddd-df0e-4621-af37-c2b36aaa6733",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0f88d673-3447-4255-ad82-7d5dc3633484",
+                            ConcurrencyStamp = "395c3929-2b5d-4ce8-933e-74ca9eb3cbd4",
                             Dob = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
@@ -108,9 +110,9 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOMu+Qgc9OlStHunmdKyBsvv8DpGd0fJv+qZLOuBEEi3n60yLQkRJNtiaYjF2Sqygg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF+yFZD0D8HOihk85lOK54zgZxObX9cdxTYgMTUqtW2EAJ12NqiGQKKbt7R16K8lBg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9545d240-0150-407a-92df-59ae48a8f513",
+                            SecurityStamp = "2bd2c58f-fb8f-4677-a70b-37ec4f1a4d47",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         });
@@ -446,28 +448,28 @@ namespace ASP.Net_Seminarski_rad.Data.Migrations
                         new
                         {
                             Id = "77b5b0da-e61e-46ba-b766-e1acc7401355",
-                            ConcurrencyStamp = "f956638d-1f41-4915-871f-e20eb3a8d3f4",
+                            ConcurrencyStamp = "5fe65589-9c69-47e1-9813-9261588e2d5a",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "ad858106-c60a-494e-a29a-e7d98acfc4a3",
-                            ConcurrencyStamp = "6ebbff1d-9f03-4405-aa9b-ffd4f812c895",
+                            Id = "b1e52873-466c-48bc-93ff-969220eceba8",
+                            ConcurrencyStamp = "1a21a5fd-e4a2-4b16-b5fc-08bebf53daf6",
                             Name = "BasicUser",
                             NormalizedName = "BASICUSER"
                         },
                         new
                         {
-                            Id = "3f3d5cd3-e84c-4933-acea-74408eae7ff0",
-                            ConcurrencyStamp = "90983a12-f7aa-403d-b5e9-48d2703e2752",
+                            Id = "866702ee-7042-49a1-af11-c4ffae46b609",
+                            ConcurrencyStamp = "dfb6c6db-b60c-4f26-805e-c355f3061c11",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "11994e4c-cfc6-49fe-a9fb-51665e680246",
-                            ConcurrencyStamp = "c80dc3af-99fc-4dd8-8ad2-0a88e187960c",
+                            Id = "368513eb-2ecd-4f88-8955-ef2df730c531",
+                            ConcurrencyStamp = "961ca0c2-3ed6-4da7-8e73-212db88992b6",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         });
