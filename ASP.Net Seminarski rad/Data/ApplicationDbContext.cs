@@ -42,9 +42,7 @@ namespace ASP.Net_Seminarski_rad.Data
                 NormalizedEmail = userName.ToUpper(),
                 EmailConfirmed = true,
                 PasswordHash = hasher.HashPassword(null, "Password12345!"),
-            }
-
-             );
+            });
 
             builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
             {

@@ -5,6 +5,7 @@ using ASP.Net_Seminarski_rad.Services.Interface;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASP.Net_Seminarski_rad.Controllers
 {
@@ -13,7 +14,6 @@ namespace ASP.Net_Seminarski_rad.Controllers
         private readonly IUserService userService;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly IMapper mapper;
-        private readonly ApplicationDbContext db;
 
 
         public UserController(IUserService userSevice, SignInManager<ApplicationUser> signInManager, IMapper mapper)
@@ -38,7 +38,7 @@ namespace ASP.Net_Seminarski_rad.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        
+
         public async Task<IActionResult> UserManagement()
         {
             var users = await userService.GetAllUsersAsync();
@@ -96,5 +96,4 @@ namespace ASP.Net_Seminarski_rad.Controllers
             return RedirectToAction("UserManagement");
         }
     }
-
 }

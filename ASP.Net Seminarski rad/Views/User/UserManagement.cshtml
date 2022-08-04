@@ -3,8 +3,10 @@
 @using ASP.Net_Seminarski_rad.Models.Dbo
 @model List<ApplicationUserViewModel>
 @inject UserManager<ApplicationUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
 @{
     int counter = 1;
+
 }
 <a class="btn btn-primary" href="@Url.Action("CreateUser", "User")">Add new user</a>
 
