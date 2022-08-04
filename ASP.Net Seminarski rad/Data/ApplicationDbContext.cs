@@ -41,7 +41,7 @@ namespace ASP.Net_Seminarski_rad.Data
                 Email = userName,
                 NormalizedEmail = userName.ToUpper(),
                 EmailConfirmed = true,
-                PasswordHash = hasher.HashPassword(null, "Password12345!"),
+                PasswordHash = hasher.HashPassword(null, "Pass123"),
             });
 
             builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
@@ -119,7 +119,7 @@ namespace ASP.Net_Seminarski_rad.Data
                     ProductCategoryId = 1,
                     Quantity = 1,
                     Price = 560,
-                    ProductImgUrl = "https://lh4.googleusercontent.com/uKiSMORQwKFcFD6mmxTLQKOJYzDnfa1SI-t4kUkZU0ctklvkYovubYe8YlXhmBLCYwHaM0VBvTuD2j68ODBCanhIY_nJteVdkPl6CtfVV2QQUvTf3wa4nukJsuB0NHrQWezwFjRI"
+                    ProductImgUrl = "https://www.scarpebarefoot.com/wp-content/uploads/2020/04/Eastern_Traveler_stivale_furoshiki_Vibram_barefoot_BLACK-SUEDE_HERO-300x200.jpg"
                 },
 
                 new Product

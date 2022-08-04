@@ -10,6 +10,7 @@ namespace ASP.Net_Seminarski_rad.Models.Binding
         public string? LastName { get; set; }
         public DateTime? Dob { get; set; }
         public string? Email { get; set; }
+        public string? Password { get; set; }
 
     }
 }

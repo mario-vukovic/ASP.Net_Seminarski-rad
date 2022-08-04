@@ -95,6 +95,7 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
         public async Task<ApplicationUserViewModel> UpdateUserAsync(ApplicationUserUpdateBinding model)
         {
             var user = await db.ApplicationUser.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var hasher = new PasswordHasher<ApplicationUser?>();
 
             user.FirstName = model.FirstName ?? user.FirstName;
             user.LastName = model.LastName ?? user.LastName;
@@ -104,6 +105,8 @@ namespace ASP.Net_Seminarski_rad.Services.Implementation
             user.NormalizedEmail = model.Email.ToUpper();
             user.NormalizedUserName = model.Email.ToUpper();
             user.EmailConfirmed = model.EmailConfirmed;
+            user.Password = model.Password ?? user.Password;
+            user.PasswordHash = hasher.HashPassword(user, model.Password);
             
             await db.SaveChangesAsync();
             return mapper.Map<ApplicationUserViewModel>(user);
